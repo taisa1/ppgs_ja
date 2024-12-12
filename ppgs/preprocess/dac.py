@@ -11,7 +11,7 @@ HOP_SIZE = 320
 ###############################################################################
 
 
-def from_audios(audio, lengths, sample_rate=24000, gpu=None):
+def from_audios(audio, lengths, sample_rate=ppgs.SAMPLE_RATE, gpu=None):
     device = torch.device(f'cuda:{gpu}' if gpu is not None else 'cpu')
     expected_length = audio.shape[-1] // ppgs.HOPSIZE
 
@@ -38,7 +38,7 @@ def from_audios(audio, lengths, sample_rate=24000, gpu=None):
         ).to(torch.int)
 
 
-def from_audio(audio, sample_rate=24000, gpu=None):
+def from_audio(audio, sample_rate=ppgs.SAMPLE_RATE, gpu=None):
     if audio.dim() == 2:
         audio = audio.unsqueeze(dim=0)
     return from_audios(

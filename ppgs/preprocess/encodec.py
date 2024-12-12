@@ -9,7 +9,7 @@ import ppgs
 ###############################################################################
 
 
-def from_audios(audio, lengths, sample_rate=24000, gpu=None):
+def from_audios(audio, lengths, sample_rate=ppgs.SAMPLE_RATE, gpu=None):
     device = torch.device(f'cuda:{gpu}' if gpu is not None else 'cpu')
     expected_length = audio.shape[-1] // ppgs.HOPSIZE
     # Cache resampler
@@ -20,7 +20,7 @@ def from_audios(audio, lengths, sample_rate=24000, gpu=None):
         from_audios.sample_rate = sample_rate
         from_audios.resampler = torchaudio.transforms.Resample(
             orig_freq=sample_rate,
-            new_freq=24000
+            new_freq=ppgs.SAMPLE_RATE
         ).to(device)
 
     # Cache model
@@ -46,7 +46,7 @@ def from_audios(audio, lengths, sample_rate=24000, gpu=None):
         ).to(torch.int)
 
 
-def from_audio(audio, sample_rate=24000, gpu=None):
+def from_audio(audio, sample_rate=ppgs.SAMPLE_RATE, gpu=None):
     if audio.dim() == 2:
         audio = audio.unsqueeze(dim=0)
     return from_audios(

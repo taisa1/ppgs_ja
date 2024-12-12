@@ -36,7 +36,7 @@ def from_audios(
     gpu=None):
     """Compute W2V2FB latents from audio"""
     with torch.no_grad():
-        if sample_rate is None: sample_rate=24000
+        if sample_rate is None: sample_rate=ppgs.SAMPLE_RATE
         config=W2V2FB_CONFIG
         device = torch.device('cpu' if gpu is None else f'cuda:{gpu}')
 

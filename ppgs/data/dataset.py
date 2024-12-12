@@ -55,7 +55,7 @@ class Dataset(torch.utils.data.Dataset):
         name_or_files,
         partition=None,
         features=['audio'],
-        max_frames=25000):
+        max_frames=ppgs.MAX_TRAINING_FRAMES):
         self.features = features
         self.metadata = Metadata(
             name_or_files,
@@ -83,7 +83,7 @@ class Dataset(torch.utils.data.Dataset):
             elif feature == 'phonemes':
 
                 # Convert to indices
-                hopsize = ppgs.HOPSIZE / 24000
+                hopsize = ppgs.HOPSIZE / ppgs.SAMPLE_RATE
                 num_frames = self.metadata.lengths[index]
                 times = np.linspace(
                     hopsize / 2,
@@ -160,7 +160,7 @@ class Metadata:
         name_or_files,
         partition=None,
         overwrite_cache=False,
-        max_frames=25000):
+        max_frames=ppgs.MAX_TRAINING_FRAMES):
         """Create a metadata object for the given dataset or sources"""
         lengths = {}
 
@@ -207,7 +207,7 @@ class Metadata:
                 info = torchaudio.info(audio_file)
                
                 length = int(
-                    info.num_frames * (24000 / info.sample_rate)
+                    info.num_frames * (ppgs.SAMPLE_RATE / info.sample_rate)
                 ) // ppgs.HOPSIZE
 
                 # Omit if length is too long to avoid OOM

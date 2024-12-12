@@ -160,7 +160,7 @@ def from_file(
     # Compute PPGs
     return from_audio(
         audio=audio,
-        sample_rate=24000,
+        sample_rate=ppgs.SAMPLE_RATE,
         representation=representation,
         checkpoint=checkpoint,
         gpu=gpu,
@@ -599,7 +599,7 @@ def infer(
 def resample(
     audio: torch.Tensor,
     sample_rate: Union[int, float],
-    target_rate: Union[int, float] = 24000):
+    target_rate: Union[int, float] = ppgs.SAMPLE_RATE):
     """Perform audio resampling"""
     if sample_rate == target_rate:
         return audio

@@ -31,7 +31,7 @@ WINDOW_SIZE = 400
 def from_audios(
     audio,
     lengths,
-    sample_rate=24000,
+    sample_rate=ppgs.SAMPLE_RATE,
     config=W2V2FC_CONFIG,
     gpu=None):
     """Compute W2V2FC latents from audio"""
@@ -63,7 +63,7 @@ def from_audios(
 
 def from_audio(
     audio,
-    sample_rate=24000,
+    sample_rate=ppgs.SAMPLE_RATE,
     config=W2V2FC_CONFIG,
     gpu=None):
     """Compute W2V2FC latents from audio"""

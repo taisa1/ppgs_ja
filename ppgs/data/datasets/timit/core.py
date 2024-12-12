@@ -95,8 +95,8 @@ def format():
         audio = ppgs.load.audio(audio_file)
 
         # Ensure correct duration
-        audio_duration = audio[0].shape[0] / 24000
-        alignment_duration = float(end_times[-1]) / 24000
+        audio_duration = audio[0].shape[0] / ppgs.SAMPLE_RATE
+        alignment_duration = float(end_times[-1]) / ppgs.SAMPLE_RATE
         if not abs(audio_duration - alignment_duration) <= 2.5e-1:
             continue
 

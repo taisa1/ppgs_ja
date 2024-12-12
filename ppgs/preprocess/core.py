@@ -194,7 +194,7 @@ def from_dataloader(loader, representations, output, num_workers=0, gpu=None):
 def from_audio(
     audio,
     representation=ppgs.REPRESENTATION,
-    sample_rate=24000,
+    sample_rate=ppgs.SAMPLE_RATE,
     gpu=None
 ):
     """Preprocess audio"""
@@ -207,7 +207,7 @@ def from_audio(
     with torch.autocast('cuda' if gpu is not None else 'cpu'):
         features = getattr(ppgs.preprocess, representation).from_audio(
             audio,
-            sample_rate=24000,
+            sample_rate=ppgs.SAMPLE_RATE,
             gpu=gpu)
 
         if features.dim() == 2:

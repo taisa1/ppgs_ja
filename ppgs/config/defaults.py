@@ -26,7 +26,7 @@ NUM_FFT = 1024
 NUM_MELS = 80
 
 # Audio sample rate
-SAMPLE_RATE = 16000
+SAMPLE_RATE = 24000
 
 # Number of spectrogram channels
 WINDOW_SIZE = 1024
@@ -182,7 +182,7 @@ GRADIENT_CLIP_THRESHOLD_L2 = None
 LEARNING_RATE = 2e-4
 
 # Maximum number of frames in a batch
-MAX_TRAINING_FRAMES = 150000
+MAX_TRAINING_FRAMES = 25000
 
 # Maximum number of frames in a batch during preprocessing
 MAX_PREPROCESS_FRAMES = 10000

@@ -112,8 +112,8 @@ def mp3_textgrid(
     torchaudio.save(
         audio_directory / (mp3_file.stem + '.wav'),
         audio,
-        sample_rate=24000)
-    duration = audio.shape[-1] / 24000
+        sample_rate=ppgs.SAMPLE_RATE)
+    duration = audio.shape[-1] / ppgs.SAMPLE_RATE
 
     # Load alignment file contents
     textgrid_file = (

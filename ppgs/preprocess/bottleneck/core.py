@@ -28,7 +28,7 @@ WINDOW_SIZE = 1024
 def from_audios(
     audio,
     lengths,
-    sample_rate=24000,
+    sample_rate=ppgs.SAMPLE_RATE,
     config=CONFIG_FILE,
     gpu=None):
     """Compute ASR bottleneck features from audio"""
@@ -62,7 +62,7 @@ def from_audios(
 
 def from_audio(
     audio,
-    sample_rate=24000,
+    sample_rate=ppgs.SAMPLE_RATE,
     config=CONFIG_FILE,
     gpu=None):
     """Compute Bottleneck PPGs from audio"""

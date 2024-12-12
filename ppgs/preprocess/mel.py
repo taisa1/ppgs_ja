@@ -11,7 +11,7 @@ import ppgs
 ###############################################################################
 
 
-def from_audios(audio, lengths, sample_rate=24000, gpu=None):
+def from_audios(audio, lengths, sample_rate=ppgs.SAMPLE_RATE, gpu=None):
     device = f'cuda:{gpu}' if gpu is not None else 'cpu'
     audio = audio.to(device)
     spec = ppgs.preprocess.spectrogram.from_audios(audio, lengths)
@@ -19,7 +19,7 @@ def from_audios(audio, lengths, sample_rate=24000, gpu=None):
     return melspec.to(torch.float16)
 
 
-def from_audio(audio, sample_rate=24000, gpu=None):
+def from_audio(audio, sample_rate=ppgs.SAMPLE_RATE, gpu=None):
     with torch.autocast('cuda' if gpu is not None else 'cpu'):
         if audio.dim() == 2:
             audio = audio.unsqueeze(dim=0)
@@ -59,7 +59,7 @@ def linear_to_mel(spectrogram):
     # Create mel basis
     if not hasattr(linear_to_mel, 'mel_basis'):
         basis = librosa.filters.mel(
-            sr=24000,
+            sr=ppgs.SAMPLE_RATE,
             n_fft=ppgs.NUM_FFT,
             n_mels=ppgs.NUM_MELS)
         basis = torch.from_numpy(basis)

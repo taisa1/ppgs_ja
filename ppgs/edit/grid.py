@@ -68,7 +68,7 @@ def constant(ppg: torch.Tensor, ratio: float) -> torch.Tensor:
 def from_alignments(
     source: pypar.Alignment,
     target: pypar.Alignment,
-    sample_rate: int = 24000,
+    sample_rate: int = ppgs.SAMPLE_RATE,
     hopsize: int = ppgs.HOPSIZE
 ) -> torch.Tensor:
     """Create time-stretch grid to convert source alignment to target

@@ -133,7 +133,7 @@ def format(speakers=None):
             audio = ppgs.load.audio(wav_dir_path / (lab_file.stem + '.wav'))
 
             # Skip if length disagrees
-            audio_duration = audio[0].shape[0] / 24000
+            audio_duration = audio[0].shape[0] / ppgs.SAMPLE_RATE
             if abs(audio_duration - float(timestamps[-1])) > 1e-1:
                 continue
 

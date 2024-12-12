@@ -32,7 +32,7 @@ def sampler(dataset, partition):
 
 class Sampler(torch.utils.data.sampler.BatchSampler):
 
-    def __init__(self, dataset, max_frames=25000):
+    def __init__(self, dataset, max_frames=ppgs.MAX_TRAINING_FRAMES):
         self.max_frames = max_frames
         self.epoch = 0
         self.buckets = dataset.buckets()

@@ -32,7 +32,7 @@ HOP_SIZE = 160
 def from_audios(
     audio,
     lengths,
-    sample_rate=24000,
+    sample_rate=ppgs.SAMPLE_RATE,
     config=None,
     gpu=None):
     """Compute W2V2FB latents from audio"""
@@ -41,7 +41,7 @@ def from_audios(
     return torch.nn.functional.pad(audio, (pad, pad))
 
 
-def from_audio(audio, sample_rate=24000, config=None, gpu=None):
+def from_audio(audio, sample_rate=ppgs.SAMPLE_RATE, config=None, gpu=None):
     """Compute audio tensor latents from audio"""
     audio = ppgs.resample(audio, sample_rate, SAMPLE_RATE).squeeze(dim=1)
     pad = WINDOW_SIZE // 2 - HOP_SIZE // 2

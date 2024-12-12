@@ -22,7 +22,7 @@ def loader(
     partition=None,
     features=TRAINING_FEATURES,
     num_workers=ppgs.NUM_WORKERS,
-    max_frames=25000):
+    max_frames=ppgs.MAX_TRAINING_FRAMES):
     """Retrieve a data loader"""
     # Initialize dataset
     dataset = ppgs.data.Dataset(

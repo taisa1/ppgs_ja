@@ -20,7 +20,7 @@ import ppgs
 
 
 # Display size
-DISPLAY_WINDOW_SIZE = 24000 // ppgs.HOPSIZE
+DISPLAY_WINDOW_SIZE = ppgs.SAMPLE_RATE // ppgs.HOPSIZE
 DISPLAY_HOPSIZE = 2
 DISPLAY_PADDING = DISPLAY_WINDOW_SIZE // 2 - DISPLAY_HOPSIZE//2
 
@@ -175,7 +175,7 @@ def from_ppg_to_video_file(
     """Takes ppg of shape time,categories and creates a visualization"""
     # Load audio
     audio = torchaudio.load(audio_filename)[0][0]
-    audio_clip = mpy.AudioFileClip(audio_filename, fps=24000)
+    audio_clip = mpy.AudioFileClip(audio_filename, fps=ppgs.SAMPLE_RATE)
 
     num_frames = len(audio) // ppgs.HOPSIZE
 
@@ -394,7 +394,7 @@ def from_textgrid_to_pixels(
     alignment = pypar.Alignment(textgrid_filename)
 
     # Get time corresponding to each frame
-    hopsize = ppgs.HOPSIZE / 24000
+    hopsize = ppgs.HOPSIZE / ppgs.SAMPLE_RATE
     times = np.linspace(
         hopsize / 2,
         (num_frames - 1) * hopsize + hopsize / 2,

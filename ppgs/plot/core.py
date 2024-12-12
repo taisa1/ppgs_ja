@@ -112,7 +112,7 @@ def from_files_to_files(
 
 
 # Display size
-DISPLAY_WINDOW_SIZE = 24000 // ppgs.HOPSIZE
+DISPLAY_WINDOW_SIZE = ppgs.SAMPLE_RATE // ppgs.HOPSIZE
 DISPLAY_HOPSIZE = 2
 DISPLAY_PADDING = DISPLAY_WINDOW_SIZE // 2 - DISPLAY_HOPSIZE//2
 
@@ -266,7 +266,7 @@ def from_ppg_to_video_file(
     if audio_filename is not None:
         audio_clip = mpy.AudioFileClip(
             str(audio_filename),
-            fps=24000)
+            fps=ppgs.SAMPLE_RATE)
 
     num_frames = ppg.T.shape[-1]
 
@@ -525,7 +525,7 @@ def from_textgrid_to_pixels(
     alignment = pypar.Alignment(textgrid_filename)
 
     # Get time corresponding to each frame
-    hopsize = ppgs.HOPSIZE / 24000
+    hopsize = ppgs.HOPSIZE / ppgs.SAMPLE_RATE
     times = np.linspace(
         hopsize / 2,
         (num_frames - 1) * hopsize + hopsize / 2,
