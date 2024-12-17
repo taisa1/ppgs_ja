@@ -59,12 +59,8 @@ def model(checkpoint=None, representation=None):
     if checkpoint is None and ppgs.LOCAL_CHECKPOINT is None:
         if ppgs.REPRESENTATION == 'mel' or ppgs.REPRESENTATION is None:
             checkpoint = huggingface_hub.hf_hub_download(
-                'CameronChurchwell/ppgs',
-                'mel-800k.pt')
-        elif ppgs.REPRESENTATION == 'w2v2fb':
-            checkpoint = huggingface_hub.hf_hub_download(
-                'CameronChurchwell/ppgs',
-                'w2v2fb-425k.pt')
+                'taisa1/ppgs-ja',
+                'mel_ja.pt')
         else:
             raise ValueError(
                 f'No default checkpoints exist for '
